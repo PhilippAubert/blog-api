@@ -134,7 +134,7 @@ app.delete("/posts/:id", (req, res) => {
 
 */
 
-const { PORT } = process.env; // je nachdem, wo unsere app läuft, kann es sein dass ein anderer PORT aufgerufen ist, deswegen braucht es eine neue variable
+const { PORT, MONGO_URL } = process.env; // je nachdem, wo unsere app läuft, kann es sein dass ein anderer PORT aufgerufen ist, deswegen braucht es eine neue variable
 
 /*
 {
@@ -143,7 +143,9 @@ COMMAND_MODE: "unix2003",
 }
 */
 
-mongoose.connect("mongodb://localhost/zone1", {
+console.log(MONGO_URL);
+
+mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
