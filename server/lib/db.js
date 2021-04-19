@@ -11,7 +11,7 @@ const path = require("path");
   contains the folder of the current module
   path.resolve will return the correct path for us
 */
-const dbPath = path.resolve(__dirname, "./db.json");
+const dbPath = path.resolve(__dirname, "./db.json"); 
 
 /*
   Insert a post to the database
@@ -35,6 +35,7 @@ const dbPath = path.resolve(__dirname, "./db.json");
   the new post if fullfilled
 */
 function insert(post) {
+  // post = der "body" der request!!
   return fs.readFile(dbPath, "utf-8").then((jsonData) => {
     const posts = JSON.parse(jsonData);
     const newPost = {
@@ -54,13 +55,16 @@ function insert(post) {
 
 /*
   Find all the posts in the database
-
+    das ist dann die GET request, bzw. GET 200! 
   returns an Promise containing an array of posts
-  if fulfilled
+  if fulfilled 
 */
+
 function findAll() {
   return fs.readFile(dbPath, "utf-8").then((jsonData) => {
     const posts = JSON.parse(jsonData);
+    console.log(posts);
+
     return posts;
   });
 }
@@ -72,6 +76,7 @@ function findAll() {
   if existing or undefined if no post with the
   given id exists if fullfilled
 */
+
 function findById(id) {
   return fs.readFile(dbPath, "utf-8").then((jsonData) => {
     const posts = JSON.parse(jsonData);
